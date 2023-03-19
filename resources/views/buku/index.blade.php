@@ -87,7 +87,10 @@
                                         <form action="{{ route('daftar.destroy', $value->id) }}" method="post">
                                             <a href="{{ route('daftar.edit', $value->id) }}"
                                                 class="btn btn-primary btn-sm"><i class="fas fa-pen"></i> </a>
-                                            <a href="{{ route('daftar.show', $value->id) }}"
+                                                <button type="button" class="btn btn-primary btn-sm" id="show" name="show"  data-toggle="modal"
+                                                data-target="#detailsModal"
+                                                data-url="{{ '/daftar/'.$value->id }}" >
+                                                <i class="fa fa-eye"></i>
                                                 class="btn btn-info btn-sm"><i class="fa fa-eye"></i> </a>
                                             @csrf
                                             @method('DELETE')
@@ -106,6 +109,70 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Data Buku</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="sampul" class="col-form-label">Sampul :</label>
+                        <input type="img" class="form-control" id="sampul">
+                    </div>
+                    <div class="form-group">
+                        <label for="isbn" class="col-form-label">ISBN :</label>
+                        <textarea class="form-control" id="isbn"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="judul" class="col-form-label">Judul :</label>
+                        <input type="text" class="form-control" id="judul">
+                    </div>
+                    <div class="form-group">
+                        <label for="kategori" class="col-form-label">Kategori :</label>
+                        <input type="text" class="form-control" id="kategori">
+                    </div>
+                    <div class="form-group">
+                        <label for="rak" class="col-form-label">Rak :</label>
+                        <input type="text" class="form-control" id="rak">
+                    </div>
+                    <div class="form-group">
+                        <label for="penerbit" class="col-form-label">Penerbit :</label>
+                        <input type="text" class="form-control" id="penerbit">
+                    </div>
+                    <div class="form-group">
+                        <label for="pengarang" class="col-form-label">Pengarang :</label>
+                        <input type="text" class="form-control" id="pengarang">
+                    </div>
+                    <div class="form-group">
+                        <label for="tahun_buku" class="col-form-label">Tahun :</label>
+                        <input type="text" class="form-control" id="tahun_buku">
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlah_buku" class="col-form-label">Jumlah Buku :</label>
+                        <input type="text" class="form-control" id="jumlah_buku">
+                    </div>
+                    <div class="form-group">
+                        <label for="lampiran_buku" class="col-form-label">Lampiran Buku :</label>
+                        <input type="text" class="form-control" id="lampiran_buku">
+                    </div>
+                    <div class="form-group">
+                        <label for="keterangan_lain" class="col-form-label">Keterangan Lain :</label>
+                        <input type="text" class="form-control" id="keterangan_lain">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @stop
 
 @section('js')
