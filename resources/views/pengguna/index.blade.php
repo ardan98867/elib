@@ -100,7 +100,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="detailsModalLabel">Data pengguna</h5>
+                <h5 class="modal-title" id="detailsModalLabel">New message</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -108,56 +108,40 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="nis" class="col-form-label">NIS :</label>
-                        <input type="text" class="form-control" id="nis">
+                        <label for="nis">NIS :</label>
+                        <input  class="form-control form-control-sm" id="nis" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="nama_lengkap" class="col-form-label">Nama pengguna:</label>
-                        <textarea class="form-control" id="nama_lengkap"></textarea>
+                        <label for="namalengkap">Nama Lengkap:</label>
+                        <input class="form-control form-control-sm" id="nama_lengkap" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="jurusan" class="col-form-label">Jurusan :</label>
-                        <input type="text" class="form-control" id="jurusan">
+                        <label for="jurusan">Jurusan:</label>
+                        <input class="form-control form-control-sm" id="jurusan" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="tempat_lahir" class="col-form-label">Tempat Lahir :</label>
-                        <input type="text" class="form-control" id="tempat_lahir">
+                        <label for="username">Username:</label>
+                        <input class="form-control form-control-sm" id="username" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="tanggal_lahir" class="col-form-label">Tanggal Lahir :</label>
-                        <input type="text" class="form-control" id="tanggal_lahir">
+                        <label for="level">Level:</label>
+                        <input class="form-control form-control-sm" id="level" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-form-label">Username :</label>
-                        <input type="text" class="form-control" id="name">
+                        <label for="nama-text">Jenis Kelamin:</label>
+                        <input class="form-control form-control-sm" id="jenis_kelamin" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="col-form-label">Password :</label>
-                        <input type="password" class="form-control" id="password">
+                        <label for="nama-text">Telepon:</label>
+                        <input class="form-control form-control-sm" id="telepon" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="level" class="col-form-label">Level :</label>
-                        <input type="text" class="form-control" id="level">
+                        <label for="nama-text">Email:</label>
+                        <input class="form-control form-control-sm" id="email" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="jenis_kelamin" class="col-form-label">Jenis Kelamin :</label>
-                        <input type="text" class="form-control" id="jenis_kelamin">
-                    </div>
-                    <div class="form-group">
-                        <label for="telepon" class="col-form-label">Telepon :</label>
-                        <input type="tel" class="form-control" id="telepon">
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="col-form-label">Email :</label>
-                        <input type="email" class="form-control" id="email">
-                    </div>
-                    <div class="form-group">
-                        <label for="foto" class="col-form-label">Pas Foto :</label>
-                        <input type="img" class="form-control" id="foto">
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat" class="col-form-label">Alamat :</label>
-                        <textarea class="form-control" id="alamat"></textarea>
+                        <label for="nama-text" class="col-form-label">Nama Lengkap:</label>
+                        <textarea class="form-control" id="nama-text"></textarea>
                     </div>
                 </form>
             </div>
@@ -180,7 +164,7 @@ $(document).ready(function() {
         ]
     });
 
-    $('#show').click(function() {
+    $('[name=show]').click(function() {
         var url = $(this).data('url');
         $.ajax({
         url: url,
@@ -191,9 +175,18 @@ $(document).ready(function() {
                 $('#nis').val(html.nis);
                 $('#nama_lengkap').val(html.nama_lengkap);
                 $('#jurusan').val(html.jurusan);
-                $('#name').val(html.name);
-                $('#level').val(html.level);
-                $('#jenis_kelamin').val(html.jenis_kelamin);
+                $('#username').val(html.name);
+                // check level user 
+                if (html.level == 0) {
+                    $('#level').val("Admin");
+                } else {
+                    $('#level').val("Pengguna");
+                }
+                if (html.jenis_kelamin == 0) {
+                    $('#jenis_kelamin').val("Laki-Laki");
+                } else {
+                    $('#jenis_kelamin').val("Perempuan");
+                }
                 $('#telepon').val(html.telepon);
                 $('#email').val(html.email);
                 $('#alamat').val(html.alamat);
