@@ -26,6 +26,10 @@ class BukuController extends Controller
         $data = [
             'title' => 'Daftar Buku',
             'buku' => Buku::all(),
+            'penerbit' => Penerbit::all(),
+            'kategori' => Kategori::all(),
+            'rak' => Rak::all(),
+            'pengarang' => Pengarang::all(),
         ];
         # kembalikan ke tampilan
         return view('buku.index', $data)->with('i');
@@ -145,6 +149,10 @@ class BukuController extends Controller
             'title' => 'Edit buku',
             'edit_buku' => Buku::where('id', $id)->first(),
             'buku' => Buku::all(),
+            'penerbit' => Penerbit::all(),
+            'kategori' => Kategori::all(),
+            'rak' => Rak::all(),
+            'pengarang' => Pengarang::all(),
         ]);
     }
 
@@ -248,5 +256,26 @@ class BukuController extends Controller
             # kembalikan ke tampilan
             return redirect()->route('daftar.index')->with('failed', 'Gagal delete Buku');
         }
+    }
+
+    /**
+     * Popular Buku
+     * 
+     * @param \App\Models\Buku $buku
+     * @return \Illuminate\Http\Response
+     */
+
+    public function populer()
+    {
+        
+        $buku = Buku::orderBy('created_at', 'desc')->get();
+
+        $data = [
+            'title' => 'Buku Populer',
+            'populer' => $buku,
+            'pengarang' => Pengarang::all(),
+        ];
+
+        return view('buku.populer', $data)->with('i');
     }
 }

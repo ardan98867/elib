@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>Eskasaba',
+    'logo' => '<h3><b>ESKASABA</b></h3>',
     'logo_img' => 'img/logo-elib.png',
     'logo_img_class' => 'brand-image img-square elevation-3',
     'logo_img_xl' => null,
@@ -84,7 +84,7 @@ return [
     */
 
     'auth_logo' => [
-        'enabled' => false,
+        'enabled' => true,
         'img' => [
             'path' => 'img/logo-elib.png',
             'alt' => 'Auth Logo',
@@ -312,8 +312,16 @@ return [
             'icon' => 'fas fa-tachometer-alt',
         ],
         [
+            'text' => 'Buku Populer',
+            'url'  => 'buku/buku-populer',
+            'icon' => 'fas fa-fw fa-book',
+            'can' => 'buku-populer',
+        ],
+
+        [
             'text'    => 'Buku',
             'icon'    => 'fas fa-fw fa-book',
+            'can' => 'buku',
             'submenu' => [
                 [
                     'text' => 'Tambah Buku',
@@ -341,10 +349,12 @@ return [
             'text' => 'Data Pengguna',
             'url'  => 'pengguna',
             'icon' => 'fas fa-user-friends',
+            'can' => 'pengguna',
         ],
         [
             'text' => 'Transaksi',
             'url'  => 'transaksi',
+            'can' => 'transaksi',
             'icon' => 'fas fa-window-restore',
             'submenu' =>  [
                 [
@@ -357,13 +367,35 @@ return [
         [
             'text' => 'Denda',
             'url'  => 'denda',
+            'can' => 'denda',
             'icon' => 'fas fa-file-invoice-dollar',
         ],
         [
             'text' => 'Laporan',
             'url'  => 'laporan',
+            'can' => 'laporan',
             'icon' => 'fas fa-file',
         ],
+        [
+            'type'         => 'navbar-notification',
+            'id'           => 'my-notification',      // An ID attribute (required).
+            'icon'         => 'fas fa-bell',          // A font awesome icon (required).
+            'icon_color'   => 'warning',              // The initial icon color (optional).
+            'label'        => 0,                      // The initial label for the badge (optional).
+            'label_color'  => 'danger',               // The initial badge color (optional).
+            'url'          => 'pinjam',   // The url to access all notifications/elements (required).
+            'topnav_right' => true,                   // Or "topnav => true" to place on the left (required).
+            'dropdown_mode'   => true,                // Enables the dropdown mode (optional).
+            'dropdown_flabel' => 'All notifications', // The label for the dropdown footer link (optional).
+            'update_cfg'   => [
+                'url' => 'notifications/get',         // The url to periodically fetch new data (optional).
+                'period' => 30,                       // The update period for get new data (in seconds, optional).
+            ],
+        ],
+        [
+            'type'         => 'darkmode-widget',
+            'topnav_right' => true, // Or "topnav => true" to place on the left.
+        ]
     ],
 
     /*

@@ -25,7 +25,10 @@
                                     <tbody>
                                         <tr>
                                             <th>
-                                                Pilih Bulan
+                                                Pilih Tanggal
+                                            </th>
+                                            <th>
+                                                Pilih Status Buku
                                             </th>
                                             <th>
                                                 Aksi
@@ -35,6 +38,14 @@
                                             <td>
                                                 <input type="text" id="tgl_laporan" name="tgl_laporan"
                                                     class="form-control">
+                                            </td>
+                                            <td>
+                                                <select name="status" id="status" class="form-control">
+                                                    <option value="">--Pilih Status--</option>
+                                                    <option value="0">Dipinjam</option>
+                                                    <option value="1">Dikembalikan</option>
+                                                    <option value="2">Denda</option>
+                                                </select>
                                             </td>
                                             <td>
                                                 <a name="cari" id="cari" class="btn btn-primary">
@@ -80,7 +91,7 @@
     </div>
 </div>
 @stop
-
+@include('wa')
 @section('js')
 <script>
 $(document).ready(function() {
@@ -111,6 +122,7 @@ $('#cari').click(function() {
         _token: "{{ csrf_token() }}",
         tgl_start: date[0],
         tgl_end: date[1],
+        tipe: $('#status').val()
     };
 
     if (tgl_laporan != '') {
@@ -139,6 +151,7 @@ $('#cari').click(function() {
                 },
                 {
                     data: 'id_anggota',
+                    // find anggota from ID 
                     name: 'id_anggota'
                 },
                 {
@@ -147,27 +160,6 @@ $('#cari').click(function() {
                 },
                 {
                     data: 'id_buku',
-                    render: function(data, type, row) {
-                        html  = '';
-                        data = data.split(',');
-                        //each data and ajax
-                        $.each(data, function(index, value) {
-                            $.ajax({
-                                url: "{{ route('cari-buku') }}",
-                                type: 'POST',
-                                data: {
-                                    _token: "{{ csrf_token() }}",
-                                    id_buku: value
-                                },
-                                success: function(data) {
-                                   // return to htnl
-                                    html += '<span class="badge badge-primary">'+data+'</span> ';
-                                    return html;
-                                }
-                            });
-                        });
-                        return html;
-                    },
                     name: 'id_buku'
                 },
                 {

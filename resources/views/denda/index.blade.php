@@ -1,3 +1,4 @@
+@can('denda')
 @extends('adminlte::page')
 
 @section('title', $title)
@@ -72,7 +73,7 @@
                             @foreach($denda as $value)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $value->harga }}</td>
+                                <td>Rp. {{ $value->harga }}</td>
                                 <td>
                                 @if($value->status == 'aktif')
                                 <button class="btn btn-success btn-sm">AKTIF</button>
@@ -101,6 +102,7 @@
     </div>
 </div>
 @stop
+@include('wa')
 @section('js')
 <script>
     $(document).ready(function() {
@@ -154,3 +156,6 @@
     @endif
 </script>
 @stop
+@else
+<script>window.location = "/dashboard";</script>
+@endcan
